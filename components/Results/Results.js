@@ -1,7 +1,25 @@
 import { View, Text, StyleSheet } from "react-native";
+import { dark, light } from "../../colors/colors";
 import ResultItem from "../ResultItem/ResultItem";
 
-const Results = ({ results }) => {
+const Results = ({ results, colorScheme }) => {
+  const styles = StyleSheet.create({
+    results: {
+      marginTop: 50,
+    },
+
+    resultsTitle: {
+      fontSize: 50,
+      fontWeight: "500",
+      color: colorScheme === "light" ? dark : light,
+      textAlign: "center",
+    },
+
+    resultsList: {
+      paddingTop: 10,
+    },
+  });
+
   return (
     <View style={styles.results}>
       <Text style={styles.resultsTitle}>Совпадения:</Text>
@@ -14,6 +32,7 @@ const Results = ({ results }) => {
               link={item.html_url}
               owner={item.owner.login}
               lang={item.language}
+              colorScheme={colorScheme}
             />
           );
         })}
@@ -21,22 +40,5 @@ const Results = ({ results }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  results: {
-    marginTop: 50,
-  },
-
-  resultsTitle: {
-    fontSize: 50,
-    fontWeight: "500",
-    color: "#fff",
-    textAlign: "center",
-  },
-
-  resultsList: {
-    paddingTop: 10,
-  },
-});
 
 export default Results;

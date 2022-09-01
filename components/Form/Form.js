@@ -8,9 +8,10 @@ import {
   TextInput,
   Vibration,
 } from "react-native";
+import { dark, light } from "../../colors/colors";
 import { searchReps } from "../../utils/api/api";
 
-const Form = ({ setResults, setTotalCount }) => {
+const Form = ({ setResults, setTotalCount, colorScheme }) => {
   const [isInputEmpty, setIsInputEmpty] = useState(true);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -40,10 +41,62 @@ const Form = ({ setResults, setTotalCount }) => {
       });
   }
 
+  const styles = StyleSheet.create({
+    formInput: {
+      color: colorScheme === "light" ? dark : light,
+      fontSize: 20,
+      fontWeight: "300",
+      borderRadius: 5,
+      borderStyle: "solid",
+      borderWidth: 1,
+      borderColor: colorScheme === "light" ? dark : light,
+      padding: 10,
+      width: 300,
+      marginTop: 30,
+    },
+
+    formButton: {
+      marginTop: 20,
+      padding: 10,
+      borderRadius: 5,
+      borderColor: colorScheme === "light" ? dark : light,
+      borderWidth: 1,
+    },
+
+    formButtonDisabled: {
+      marginTop: 20,
+      padding: 10,
+      borderRadius: 5,
+      borderColor: colorScheme === "light" ? dark : light,
+      borderWidth: 1,
+      opacity: 0.4,
+    },
+
+    buttonText: {
+      color: colorScheme === "light" ? dark : light,
+      fontSize: 20,
+      fontWeight: "300",
+    },
+
+    buttonTextDisabled: {
+      color: colorScheme === "light" ? dark : light,
+      fontSize: 20,
+      fontWeight: "300",
+      opacity: 0.4,
+    },
+
+    loader: {
+      marginVertical: 25,
+    },
+  });
+
   return (
     <>
       {isLoading ? (
-        <ActivityIndicator size={60} color="#fff" />
+        <ActivityIndicator
+          size={60}
+          color={colorScheme === "light" ? dark : light}
+        />
       ) : (
         <>
           <TextInput
@@ -52,7 +105,7 @@ const Form = ({ setResults, setTotalCount }) => {
             onChangeText={(text) => setInputValue(text)}
             clearButtonMode="while-editing"
             enablesReturnKeyAutomatically={true}
-            keyboardAppearance="dark"
+            keyboardAppearance={colorScheme === "light" ? "light" : "dark"}
             onSubmitEditing={() => handleSearch(inputValue)}
           />
           <Pressable
@@ -67,54 +120,5 @@ const Form = ({ setResults, setTotalCount }) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  formInput: {
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "300",
-    borderRadius: 5,
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderColor: "#fff",
-    padding: 10,
-    width: 300,
-    marginTop: 30,
-  },
-
-  formButton: {
-    marginTop: 20,
-    padding: 10,
-    borderRadius: 5,
-    borderColor: "#fff",
-    borderWidth: 1,
-  },
-
-  formButtonDisabled: {
-    marginTop: 20,
-    padding: 10,
-    borderRadius: 5,
-    borderColor: "#fff",
-    borderWidth: 1,
-    opacity: 0.4,
-  },
-
-  buttonText: {
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "300",
-  },
-
-  buttonTextDisabled: {
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "300",
-    opacity: 0.4,
-  },
-
-  loader: {
-    marginVertical: 25,
-  },
-});
 
 export default Form;
