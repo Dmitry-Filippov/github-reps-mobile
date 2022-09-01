@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   Pressable,
   StyleSheet,
   Text,
   TextInput,
+  Vibration,
 } from "react-native";
 import { searchReps } from "../../utils/api/api";
 
@@ -30,6 +32,11 @@ const Form = ({ setResults, setTotalCount }) => {
       })
       .then(() => {
         setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        Alert.alert("Error", err.message);
+        Vibration.vibrate();
       });
   }
 
