@@ -62,7 +62,7 @@ export default function App() {
       >
         <StatusBar
           style="auto"
-          barStyle={colorScheme === "light" ? "dark" : "light"}
+          barStyle={colorScheme === "light" ? "dark-content" : "light-content"}
         />
         <View style={styles.container}>
           <Text style={styles.title}>Поиск на GitHub</Text>
