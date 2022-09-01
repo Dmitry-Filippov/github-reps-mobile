@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
-import { Button, Pressable, StyleSheet, Text, TextInput } from "react-native";
+import {
+  ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+} from "react-native";
+import { searchReps } from "../../utils/api/api";
 
-const Form = () => {
+const Form = ({ setResults, setTotalCount }) => {
   const [isInputEmpty, setIsInputEmpty] = useState(true);
   const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (inputValue !== "") {
@@ -13,19 +21,42 @@ const Form = () => {
     }
   });
 
+  function handleSearch() {
+    setIsLoading(true);
+    searchReps(inputValue)
+      .then((res) => {
+        setResults(res.items.slice(0, 10));
+        setTotalCount(res.total_count);
+      })
+      .then(() => {
+        setIsLoading(false);
+      });
+  }
+
   return (
     <>
-      <TextInput
-        style={styles.formInput}
-        defaultValue={inputValue}
-        onChangeText={(text) => setInputValue(text)}
-      />
-      <Pressable
-        disabled={isInputEmpty}
-        style={isInputEmpty ? styles.formButtonDisabled : styles.formButton}
-      >
-        <Text style={styles.buttonText}>Поиск</Text>
-      </Pressable>
+      {isLoading ? (
+        <ActivityIndicator size={60} color="#fff" />
+      ) : (
+        <>
+          <TextInput
+            style={styles.formInput}
+            defaultValue={inputValue}
+            onChangeText={(text) => setInputValue(text)}
+            clearButtonMode="while-editing"
+            enablesReturnKeyAutomatically={true}
+            keyboardAppearance="dark"
+            onSubmitEditing={() => handleSearch(inputValue)}
+          />
+          <Pressable
+            disabled={isInputEmpty}
+            style={isInputEmpty ? styles.formButtonDisabled : styles.formButton}
+            onPress={() => handleSearch(inputValue)}
+          >
+            <Text style={styles.buttonText}>Поиск</Text>
+          </Pressable>
+        </>
+      )}
     </>
   );
 };
@@ -72,6 +103,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "300",
     opacity: 0.4,
+  },
+
+  loader: {
+    marginVertical: 25,
   },
 });
 
