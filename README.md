@@ -4,4 +4,4 @@
 
 проект выполнен на React Native
 
-[Сыылка на веб-версию](https://dmitry-filippov.github.io/github-reps/)
+[Ссылка на веб-версию](https://dmitry-filippov.github.io/github-reps/)
