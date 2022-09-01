@@ -60,7 +60,10 @@ export default function App() {
       <ScrollView
         style={{ backgroundColor: colorScheme === "light" ? light : dark }}
       >
-        <StatusBar style="auto" />
+        <StatusBar
+          style="auto"
+          barStyle={colorScheme === "light" ? "dark" : "light"}
+        />
         <View style={styles.container}>
           <Text style={styles.title}>Поиск на GitHub</Text>
           <Text style={styles.subtitle}>Введите ключевое слово</Text>
@@ -69,7 +72,11 @@ export default function App() {
             setTotalCount={setTotalCount}
             colorScheme={colorScheme}
           />
-          {results[0] ? <Results results={results} colorScheme={colorScheme} /> : <></>}
+          {results[0] ? (
+            <Results results={results} colorScheme={colorScheme} />
+          ) : (
+            <></>
+          )}
           {totalCount ? (
             <Text style={styles.totalCountText}>
               Всего репозиториев найдено: {totalCount}
