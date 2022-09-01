@@ -30,13 +30,16 @@ const Form = ({ setResults, setTotalCount, colorScheme }) => {
       .then((res) => {
         setResults(res.items.slice(0, 10));
         setTotalCount(res.total_count);
+        if (!res.items[0]) {
+          throw new Error("Ничего не найдено!");
+        }
       })
       .then(() => {
         setIsLoading(false);
       })
       .catch((err) => {
         setIsLoading(false);
-        Alert.alert("Error", err.message);
+        Alert.alert("Ошибка", err.message);
         Vibration.vibrate();
       });
   }
@@ -86,7 +89,8 @@ const Form = ({ setResults, setTotalCount, colorScheme }) => {
     },
 
     loader: {
-      marginVertical: 25,
+      marginBottom: 30,
+      marginTop: 43,
     },
   });
 
@@ -96,6 +100,7 @@ const Form = ({ setResults, setTotalCount, colorScheme }) => {
         <ActivityIndicator
           size={60}
           color={colorScheme === "light" ? dark : light}
+          style={styles.loader}
         />
       ) : (
         <>

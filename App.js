@@ -14,8 +14,7 @@ import Results from "./components/Results/Results";
 export default function App() {
   const [results, setResults] = useState([]);
   const [totalCount, setTotalCount] = useState(null);
-  // const colorScheme = useColorScheme();
-  const colorScheme = "light";
+  const colorScheme = useColorScheme();
 
   const styles = StyleSheet.create({
     container: {
