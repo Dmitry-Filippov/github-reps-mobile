@@ -5,5 +5,3 @@
 проект выполнен на React Native
 
 [Ссылка на веб-версию](https://dmitry-filippov.github.io/github-reps/)
-
-exp://exp.host/@demodima97/0503c5+f03ujLevOL
