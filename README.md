@@ -6,7 +6,8 @@
 
 You can [try it in Expo](https://snack.expo.dev/@demodima97/0503c5)
 
-![iPhone 13 pro max](https://github.com/Dmitry-Filippov/github-reps-mobile/raw/additional/imgs/13_pro_max.png)
+<!-- ![iPhone 13 pro max](https://github.com/Dmitry-Filippov/github-reps-mobile/raw/additional/imgs/13_pro_max.png) -->
+<img src="https://github.com/Dmitry-Filippov/github-reps-mobile/raw/additional/imgs/13_pro_max.png" width="100" />
 
 ![iPhone SE](https://github.com/Dmitry-Filippov/github-reps-mobile/raw/additional/imgs/SE.png)
 
