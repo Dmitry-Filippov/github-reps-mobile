@@ -4,4 +4,5 @@
 
 проект выполнен на React Native
 
-[Ссылка на веб-версию](https://dmitry-filippov.github.io/github-reps/)
+You can [try it in Expo](https://snack.expo.dev/@demodima97/0503c5)
+
